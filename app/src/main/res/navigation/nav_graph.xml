@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/CartList">
+
+    <fragment
+        android:id="@+id/CartList"
+        android:name="com.artahc.kato.ui.CartListFragment"
+        android:label="@string/cart_list"
+        tools:layout="@layout/fragment_cart_list">
+        <action
+            android:id="@+id/navigate_cart_list_to_cart_detail"
+            app:destination="@+id/CartDetail" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/CartDetail"
+        android:name="com.artahc.kato.ui.CartListFragment"
+        android:label="@string/cart_list"
+        tools:layout="@layout/fragment_cart_detail" />
+</navigation>
