@@ -1,13 +1,12 @@
-package com.artahc.kato.ui
+package com.artahc.kato.ui.cart_list
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.artahc.kato.databinding.CartItemBinding
-import com.artahc.kato.data.model.Cart
+import com.artahc.kato.domain.model.Cart
 
-class CartListAdapter(private var cartList: List<Cart>) :
+class CartListAdapter(private var carts: List<Cart>) :
     RecyclerView.Adapter<CartListAdapter.ViewHolder>() {
     class ViewHolder(private val binding: CartItemBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(cart: Cart) {
@@ -22,14 +21,14 @@ class CartListAdapter(private var cartList: List<Cart>) :
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val cart = cartList[position]
+        val cart = carts[position]
         holder.bind(cart)
     }
 
-    override fun getItemCount(): Int = cartList.size
+    override fun getItemCount(): Int = carts.size
 
-    fun updateData(cartList: List<Cart>) {
-        this.cartList = cartList
+    fun updateCarts(cartList: List<Cart>) {
+        this.carts = cartList
         notifyDataSetChanged()
     }
 }
