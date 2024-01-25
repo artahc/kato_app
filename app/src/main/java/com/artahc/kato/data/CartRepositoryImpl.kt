@@ -1,14 +1,22 @@
 package com.artahc.kato.data
 
 import androidx.lifecycle.LiveData
-import com.artahc.kato.model.Cart
+import androidx.lifecycle.MutableLiveData
+import com.artahc.kato.data.model.Cart
 
-class CartRepositoryImpl: CartRepository {
-    override fun getCarts(): LiveData<Cart> {
-        TODO("Not yet implemented")
+class CartRepositoryImpl : CartRepository {
+    private val carts = MutableLiveData<List<Cart>>()
+
+    override fun getCarts(): LiveData<List<Cart>> {
+        return carts
     }
 
     override fun createCart(name: String) {
-        TODO("Not yet implemented")
+        with(carts.value ?: emptyList()) {
+            val newCarts = this.toMutableList().apply {
+                add(Cart("random", name))
+            }
+            carts.postValue(newCarts)
+        }
     }
 }

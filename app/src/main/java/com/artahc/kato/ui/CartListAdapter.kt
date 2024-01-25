@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.artahc.kato.databinding.CartItemBinding
-import com.artahc.kato.model.Cart
+import com.artahc.kato.data.model.Cart
 
 class CartListAdapter(private var cartList: List<Cart>) :
     RecyclerView.Adapter<CartListAdapter.ViewHolder>() {
