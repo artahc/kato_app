@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
@@ -26,8 +27,7 @@ import kotlinx.coroutines.launch
 class CartListFragment : Fragment() {
     private var _binding: FragmentCartListBinding? = null
     private val binding get() = _binding!!
-
-    private val viewModel: CartListViewModel by viewModels()
+    private val viewModel: CartListViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
