@@ -5,15 +5,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
-import com.artahc.kato.R
+import androidx.fragment.app.activityViewModels
 import com.artahc.kato.databinding.FragmentHomeBinding
-import com.artahc.kato.ui.cart_list.CartListFragment
-
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
+import com.artahc.kato.viewmodel.CartListViewModel
 
 /**
  * A simple [Fragment] subclass.
@@ -23,7 +17,7 @@ private const val ARG_PARAM2 = "param2"
 class HomeFragment : Fragment() {
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
-    private val viewModel: HomeViewModel by viewModels()
+    private val viewModel: CartListViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -31,15 +25,11 @@ class HomeFragment : Fragment() {
     ): View? {
         _binding =
             FragmentHomeBinding.inflate(LayoutInflater.from(inflater.context), container, false)
-        return binding.root
-    }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        val childFragment: Fragment = CartListFragment.newInstance()
-        with(childFragmentManager.beginTransaction()) {
-            replace(R.id.body_fragment_container, childFragment).commit()
+        binding.topFragmentContainer.createNewCartButton.setOnClickListener {
+            viewModel.createNewCart()
         }
-        super.onViewCreated(view, savedInstanceState)
+        return binding.root
     }
 
     companion object {

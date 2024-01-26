@@ -1,7 +1,6 @@
 package com.artahc.kato.ui.cart_list
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -10,8 +9,9 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
-import androidx.lifecycle.viewModelScope
 import com.artahc.kato.databinding.FragmentCartListBinding
+import com.artahc.kato.viewmodel.CartListState
+import com.artahc.kato.viewmodel.CartListViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.onEach
@@ -56,11 +56,6 @@ class CartListFragment : Fragment() {
 
             }
         }
-
-        binding.createNewCartButton.setOnClickListener {
-            viewModel.createNewCart(generateRandomString(10))
-        }
-
         return binding.root
     }
 

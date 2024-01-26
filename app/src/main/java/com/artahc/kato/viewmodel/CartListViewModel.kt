@@ -1,10 +1,11 @@
-package com.artahc.kato.ui.cart_list
+package com.artahc.kato.viewmodel
 
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.artahc.kato.domain.repository.CartRepository
 import com.artahc.kato.domain.model.Cart
+import com.artahc.kato.generateRandomString
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.SharingStarted
@@ -32,18 +33,11 @@ class CartListViewModel @Inject constructor(
             initialValue = CartListState.Loading
         )
 
-    fun createNewCart(name: String) {
+    fun createNewCart(name: String? = null) {
+        val cartName = name ?: generateRandomString(10)
         viewModelScope.launch {
-            val cart = cartRepository.createCart(name)
+            val cart = cartRepository.createCart(cartName)
             Log.d("CartListViewModel", "$cart")
         }
     }
-
-}
-
-fun generateRandomString(length: Int): String {
-    val charset = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"
-    return (1..length)
-        .map { charset[Random.nextInt(charset.length)] }
-        .joinToString("")
 }
