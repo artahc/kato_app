@@ -8,8 +8,12 @@ import com.artahc.kato.domain.model.Cart
 import com.artahc.kato.generateRandomString
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -25,13 +29,17 @@ sealed class CartListState {
 class CartListViewModel @Inject constructor(
     private val cartRepository: CartRepository
 ) : ViewModel() {
-    val allCarts: Flow<CartListState> = cartRepository.allCarts
-        .map { CartListState.Loaded(it) }
-        .stateIn(
-            scope = viewModelScope,
-            started = SharingStarted.WhileSubscribed(5_000),
-            initialValue = CartListState.Loading
-        )
+    private val _uiState = MutableStateFlow<CartListState>(CartListState.Loading)
+    val uiState: StateFlow<CartListState> = _uiState
+
+    init {
+        viewModelScope.launch {
+            cartRepository.getAllCarts()
+                .collect {
+                    _uiState.emit(CartListState.Loaded(it))
+                }
+        }
+    }
 
     fun createNewCart(name: String? = null) {
         val cartName = name ?: generateRandomString(10)

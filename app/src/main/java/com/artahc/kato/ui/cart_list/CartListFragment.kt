@@ -40,7 +40,7 @@ class CartListFragment : Fragment() {
 
         viewLifecycleOwner.lifecycleScope.launch {
             lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                viewModel.allCarts
+                viewModel.uiState
                     .onEach { state ->
                         when (state) {
                             CartListState.Error -> println("Error")
@@ -53,7 +53,6 @@ class CartListFragment : Fragment() {
                         }
                     }
                     .collect()
-
             }
         }
         return binding.root
