@@ -3,31 +3,38 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/Home">
+    app:startDestination="@id/nav_home">
 
     <fragment
-        android:id="@+id/Home"
+        android:id="@+id/nav_home"
         android:name="com.artahc.kato.ui.home.HomeFragment"
         android:label="@string/home"
         tools:layout="@layout/fragment_home">
         <action
-            android:id="@+id/navigate_home_to_cart_list"
+            android:id="@+id/to_cart_list"
             app:destination="@+id/CartList" />
+        <action
+            android:id="@+id/to_cart_detail"
+            app:destination="@id/nav_cart_detail">
+        </action>
     </fragment>
 
     <fragment
-        android:id="@+id/CartList"
+        android:id="@+id/nav_cart_list"
         android:name="com.artahc.kato.ui.cart_list.CartListFragment"
         android:label="@string/cart_list"
         tools:layout="@layout/fragment_cart_list">
-        <action
-            android:id="@+id/navigate_cart_list_to_cart_detail"
-            app:destination="@+id/CartDetail" />
     </fragment>
 
     <fragment
-        android:id="@+id/CartDetail"
-        android:name="com.artahc.kato.ui.cart_list.CartListFragment"
-        android:label="@string/cart_list"
-        tools:layout="@layout/fragment_cart_detail" />
+        android:id="@+id/nav_cart_detail"
+        android:name="com.artahc.kato.ui.cart_detail.CartDetailFragment"
+        android:label="CartDetail"
+        tools:layout="@layout/fragment_cart_detail">
+        <argument
+            android:name="cart_id"
+            android:defaultValue="0L"
+            app:argType="long"
+            app:nullable="false" />
+    </fragment>
 </navigation>

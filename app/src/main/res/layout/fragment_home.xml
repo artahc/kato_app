@@ -10,10 +10,8 @@
         android:id="@+id/top_fragment_container"
         layout="@layout/create_new_cart_header" />
 
-
-    <fragment
-        android:id="@+id/cart_list_fragment"
-        android:name="com.artahc.kato.ui.cart_list.CartListFragment"
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/cart_list_fragment_container"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
