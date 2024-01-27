@@ -12,8 +12,6 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import com.artahc.kato.databinding.FragmentCartListBinding
 import com.artahc.kato.ui.home.HomeFragmentDirections
-import com.artahc.kato.viewmodel.CartListState
-import com.artahc.kato.viewmodel.CartListViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.onEach

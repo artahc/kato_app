@@ -6,10 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import com.artahc.kato.R
 import com.artahc.kato.databinding.FragmentHomeBinding
 import com.artahc.kato.ui.cart_list.CartListFragment
-import com.artahc.kato.viewmodel.CartListViewModel
+import com.artahc.kato.ui.cart_list.CartListViewModel
 
 /**
  * A simple [Fragment] subclass.

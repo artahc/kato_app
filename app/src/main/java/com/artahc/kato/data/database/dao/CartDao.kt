@@ -60,6 +60,7 @@ interface CartDao {
     )
     fun deleteCartItem(cartId: Long, itemId: Long)
 
+    @Transaction
     @Query(
         """
         SELECT * FROM cart WHERE id = :id
