@@ -39,7 +39,44 @@ class CartDetailViewModel @AssistedInject constructor(
     }
 
     fun addCartItem() {
+        viewModelScope.launch {
+            cartRepository.addItemToCart(
+                cartId = cartId,
+                productName = "test",
+                productPriceEach = 0.0,
+                quantity = 1.0,
+            )
+        }
+    }
 
+    fun setItemName(itemId: Long, name: String) {
+        viewModelScope.launch {
+            cartRepository.updateCartItem(
+                cartId = cartId,
+                itemId = itemId,
+                productName = name,
+            )
+        }
+    }
+
+    fun setItemQuantity(itemId: Long, quantity: Double) {
+        viewModelScope.launch {
+            cartRepository.updateCartItem(
+                cartId = cartId,
+                itemId = itemId,
+                quantity = quantity,
+            )
+        }
+    }
+
+    fun setItemPrice(itemId: Long, productPriceEach: Double) {
+        viewModelScope.launch {
+            cartRepository.updateCartItem(
+                cartId = cartId,
+                itemId = itemId,
+                productPriceEach = productPriceEach
+            )
+        }
     }
 
     @dagger.assisted.AssistedFactory

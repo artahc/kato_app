@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.flexbox.FlexboxLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    app:justifyContent="space_between">
+
+    <TextView
+        android:id="@+id/cart_item_tile_product_name"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_vertical"
+        android:text="product_name" />
+
+
+    <com.google.android.flexbox.FlexboxLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        app:justifyContent="space_between">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:id="@+id/cart_item_tile_quantity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="quantity" />
+
+            <Space
+                android:layout_width="10dp"
+                android:layout_height="match_parent" />
+
+            <TextView
+                android:id="@+id/cart_item_tile_product_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="price_each" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/cart_item_tile_total_price"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="end|center"
+            android:text="total_price" />
+
+    </com.google.android.flexbox.FlexboxLayout>
+
+
+</com.google.android.flexbox.FlexboxLayout>

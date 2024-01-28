@@ -42,6 +42,7 @@ fun CartWithItems.toDomain(): Cart {
         name = cart.name,
         items = items.map {
             CartItem(
+                id = it.id,
                 productName = it.productName,
                 productPriceEach = it.productPriceEach,
                 quantity = it.quantity,

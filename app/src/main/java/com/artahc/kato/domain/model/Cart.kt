@@ -1,7 +1,5 @@
 package com.artahc.kato.domain.model
 
-import java.util.Date
-
 data class Cart(
     val id: Long,
     val name: String?,
@@ -9,6 +7,7 @@ data class Cart(
 )
 
 data class CartItem(
+    val id: Long,
     val productName: String,
     val productPriceEach: Double,
     val quantity: Double,

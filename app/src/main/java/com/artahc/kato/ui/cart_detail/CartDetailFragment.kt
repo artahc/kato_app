@@ -8,7 +8,6 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.navArgs
-import com.artahc.kato.R
 import com.artahc.kato.databinding.FragmentCartDetailBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -36,22 +35,31 @@ class CartDetailFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentCartDetailBinding.inflate(
             LayoutInflater.from(inflater.context),
             container,
             false
         )
 
+        val adapter = CartItemAdapter(emptyList()) { item ->
+            println(item)
+        }
+        binding.cartItemsRecyclerView.adapter = adapter
+
         viewLifecycleOwner.lifecycleScope.launch {
             viewModel.uiState.collect { state ->
                 when (state) {
                     is CartDetailState.Loaded -> {
-                        binding.cartDetailTitle.text = state.cart.name ?: ""
+                        binding.cartName.text = state.cart.name
+                        binding.addItemButton.setOnClickListener {
+                            viewModel.addCartItem()
+                        }
+                        adapter.updateCartItems(state.cart.items)
                     }
 
                     CartDetailState.Loading -> {
-                        binding.cartDetailTitle.text = "Loading"
+
                     }
                 }
             }
@@ -67,7 +75,6 @@ class CartDetailFragment : Fragment() {
 
     companion object {
         @JvmStatic
-        fun newInstance() =
-            CartDetailFragment()
+        fun newInstance() = CartDetailFragment()
     }
 }

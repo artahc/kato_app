@@ -74,6 +74,7 @@ dependencies {
     implementation("androidx.activity:activity-compose:1.8.2")
     implementation("androidx.recyclerview:recyclerview:1.3.2")
     implementation("androidx.fragment:fragment-ktx:$fragment_version")
+    implementation("com.google.android.flexbox:flexbox:3.0.0")
 
     // To use Kotlin annotation processing tool (kapt)
     implementation("androidx.room:room-ktx:$room_version")
