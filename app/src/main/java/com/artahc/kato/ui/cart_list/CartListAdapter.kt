@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.artahc.kato.databinding.CartItemBinding
+import com.artahc.kato.databinding.CartTileBinding
 import com.artahc.kato.domain.model.Cart
 
 class CartListAdapter(
@@ -12,7 +12,7 @@ class CartListAdapter(
     private val onClickCallback: (cart: Cart) -> Unit
 ) :
     RecyclerView.Adapter<CartListAdapter.ViewHolder>() {
-    class ViewHolder(private val binding: CartItemBinding) : RecyclerView.ViewHolder(binding.root) {
+    class ViewHolder(private val binding: CartTileBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(cart: Cart, onClickCallback: (cart: Cart) -> Unit) {
             binding.cartItemName.text = cart.name
             (binding.root as View).setOnClickListener {
@@ -23,7 +23,7 @@ class CartListAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view =
-            CartItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+            CartTileBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return ViewHolder(view)
     }
 
